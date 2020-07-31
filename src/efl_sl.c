@@ -1,19 +1,18 @@
-#include "eiffel.h"
-
 #include <string.h>
 
+#include "eiffel/sl.h"
 #include "service_guard.h"
 
-static Service g_eiffelSrv;
+static Service g_eiffelSlSrv;
 
-NX_GENERATE_SERVICE_GUARD(eiffel);
+NX_GENERATE_SERVICE_GUARD(eiffelSl);
 
-Result _eiffelInitialize() { return smGetService(&g_eiffelSrv, EIFFEL_SERVICE_NAME); }
+Result _eiffelSlInitialize() { return smGetService(&g_eiffelSlSrv, EIFFEL_SKYLINE_SERVICE_NAME); }
 
-void _eiffelCleanup(void) { serviceClose(&g_eiffelSrv); }
+void _eiffelSlCleanup(void) { serviceClose(&g_eiffelSlSrv); }
 
-Result eiffelLog(const char* moduleName, EiffelLogLevel level, const char* logContent) {
-    return serviceDispatchIn(&g_eiffelSrv, EFL_CMD_LOG, level,
+Result eiffelSlLog(const char* moduleName, EiffelLogLevel level, const char* logContent) {
+    return serviceDispatchIn(&g_eiffelSlSrv, EFL_SL_CMD_LOG, level,
                              .buffer_attrs =
                                  {
                                      SfBufferAttr_HipcMapAlias | SfBufferAttr_In,
