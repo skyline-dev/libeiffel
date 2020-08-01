@@ -1,7 +1,5 @@
 #pragma once
 
-#include <switch.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -17,11 +15,6 @@ typedef enum {
     EFL_LOG_LEVEL_WARNING = 1,
     EFL_LOG_LEVEL_ERROR = 2,
 } EiffelLogLevel;
-
-Result eiffelSlInitialize();
-void eiffelSlExit();
-
-Result eiffelSlLog(const char* moduleName, EiffelLogLevel level, const char* logContent);
 
 #ifdef __cplusplus
 }
