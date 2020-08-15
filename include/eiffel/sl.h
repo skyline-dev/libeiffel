@@ -4,10 +4,14 @@
 extern "C" {
 #endif
 
+#include "common.h"
+
 #define EIFFEL_SKYLINE_SERVICE_NAME "efl:sl"
 
 typedef enum {
     EFL_SL_CMD_LOG = 0,
+    EFL_SL_CMD_REGISTER_PLUGIN = 1,
+    EFL_SL_CMD_REGISTER_SHARED_MEM = 2,
 } EiffelSlCommandId;
 
 typedef enum {
