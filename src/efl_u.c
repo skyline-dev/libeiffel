@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "eiffel/user.h"
 #include "service_guard.h"
 
@@ -8,3 +10,19 @@ NX_GENERATE_SERVICE_GUARD(eiffel);
 Result _eiffelInitialize() { return smGetService(&g_eiffelSrv, EIFFEL_USER_SERVICE_NAME); }
 
 void _eiffelCleanup(void) { serviceClose(&g_eiffelSrv); }
+
+Result eiffelGetPluginMeta(SlPluginMeta* out_pluginMeta, const SlPluginName name) {
+    struct {
+        SlPluginName name;
+    } in;
+    strcpy(in.name, name);
+    return serviceDispatchInOut(&g_eiffelSrv, EFL_U_CMD_GET_PLUGIN_META, in, *out_pluginMeta);
+}
+
+Result eiffelGetPluginSharedMemInfo(SlPluginSharedMemInfo* out_pluginSharedMemInfo, const SlPluginName name) {
+    struct {
+        SlPluginName name;
+    } in;
+    strcpy(in.name, name);
+    return serviceDispatchInOut(&g_eiffelSrv, EFL_U_CMD_GET_PLUGIN_SHARED_MEM_INFO, in, *out_pluginSharedMemInfo);
+}
