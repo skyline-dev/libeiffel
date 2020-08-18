@@ -12,6 +12,7 @@ Result _eiffelInitialize() { return smGetService(&g_eiffelSrv, EIFFEL_USER_SERVI
 void _eiffelCleanup(void) { serviceClose(&g_eiffelSrv); }
 
 Result eiffelGetPluginMeta(SlPluginMeta* out_pluginMeta, const SlPluginName name) {
+    if (!(strnlen(name, SL_PLUGIN_NAME_SIZE) < SL_PLUGIN_NAME_SIZE)) return EFL_U_RESULT_BAD_PLUGIN_NAME;
     struct {
         SlPluginName name;
     } in;
@@ -20,6 +21,7 @@ Result eiffelGetPluginMeta(SlPluginMeta* out_pluginMeta, const SlPluginName name
 }
 
 Result eiffelGetPluginSharedMemInfo(SlPluginSharedMemInfo* out_pluginSharedMemInfo, const SlPluginName name) {
+    if (!(strnlen(name, SL_PLUGIN_NAME_SIZE) < SL_PLUGIN_NAME_SIZE)) return EFL_U_RESULT_BAD_PLUGIN_NAME;
     struct {
         SlPluginName name;
     } in;

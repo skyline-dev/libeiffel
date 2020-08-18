@@ -3,7 +3,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-typedef char SlPluginName[16];
+#define SL_PLUGIN_NAME_SIZE 16
+typedef char SlPluginName[SL_PLUGIN_NAME_SIZE];
 
 // subject to change
 typedef struct {
