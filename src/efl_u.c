@@ -26,5 +26,12 @@ Result eiffelGetPluginSharedMemInfo(SlPluginSharedMemInfo* out_pluginSharedMemIn
         SlPluginName name;
     } in;
     strcpy(in.name, name);
-    return serviceDispatchInOut(&g_eiffelSrv, EFL_U_CMD_GET_PLUGIN_SHARED_MEM_INFO, in, *out_pluginSharedMemInfo);
+
+    Handle out_handle = INVALID_HANDLE;
+    Result rc = serviceDispatchInOut(&g_eiffelSrv, EFL_U_CMD_GET_PLUGIN_SHARED_MEM, in, *out_pluginSharedMemInfo,
+                                     .out_handle_attrs = {SfOutHandleAttr_HipcMove}, .out_handles = &out_handle);
+    if (R_SUCCEEDED(rc)) {
+        out_pluginSharedMemInfo->handle = out_handle;
+    }
+    return rc;
 }

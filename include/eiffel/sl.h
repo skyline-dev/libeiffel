@@ -20,6 +20,12 @@ typedef enum {
     EFL_LOG_LEVEL_ERROR = 2,
 } EiffelLogLevel;
 
+typedef struct {
+    SlPluginName name;
+    uint64_t size;
+    uint32_t perm;
+} EiffelSlRegisterSharedMemIn;
+
 #ifdef __cplusplus
 }
 #endif

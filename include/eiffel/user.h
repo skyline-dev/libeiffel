@@ -13,7 +13,7 @@ extern "C" {
 
 typedef enum {
     EFL_U_CMD_GET_PLUGIN_META = 0,
-    EFL_U_CMD_GET_PLUGIN_SHARED_MEM_INFO = 1,
+    EFL_U_CMD_GET_PLUGIN_SHARED_MEM = 1,
 } EiffelUserCommandId;
 
 static const Result EFL_U_RESULT_BAD_PLUGIN_NAME = MAKERESULT(EIFFEL_MODULE_ID, 0);
